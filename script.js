@@ -1,9 +1,15 @@
 console.log('%c Start of script', 'font-weight:900; font-size: 12px; color: green;')
 
-getComputerChoice();
+let humanChoice = getHumanChoice();
+let computerChoice = getComputerChoice();
 
 function getHumanChoice() {
-    
+    console.log(`Inside getHumanChoice`);
+
+    let input = prompt(`Choose one: rock, paper or scissors?`);
+
+    console.log(`You have chosen ${input}`)
+    return input;
 }
 
 function getComputerChoice(){
