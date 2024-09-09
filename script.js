@@ -1,40 +1,60 @@
 console.log('%c Start of script', 'font-weight:900; font-size: 12px; color: green;')
 
-const humanChoice = getHumanChoice().toLocaleLowerCase();
-const computerChoice = getComputerChoice();
+playGame();
 
-console.log(`You have chosen: ${humanChoice}`);
-console.log(`The computer has chosen: ${computerChoice}`);
+function playGame(){
+    // console.log(`Inside playGame`);
+    let humanScore = 0;
+    let computerScore = 0;
 
-playRound(humanChoice, computerChoice);
+    for(let i = 0; i < 5; i++) {
+        const humanChoice = getHumanChoice().toLocaleLowerCase();
+        const computerChoice = getComputerChoice();
 
-let humanScore = 0;
-let computerScore = 0;
+        console.log(`You have chosen: ${humanChoice}`);
+        console.log(`The computer has chosen: ${computerChoice}`);
 
-function playRound(humanChoice, computerChoice){
-    // console.log(`Inside playRound`);
+        playRound(humanChoice, computerChoice);
+        console.log(`Your score: ${humanScore}, computer score: ${computerScore}`);
+    }
 
-    switch(humanChoice) {
-        case `rock`:
-            if (computerChoice == `rock`) { console.log(`Ìt's a tie!`); }
-            else if (computerChoice == `paper`) { console.log(`You lose! Paper beats Rock.`); }
-            else console.log(`You win! Rock beats Scissors.`);
-            break;
-        case `paper`:
-            if (computerChoice == `rock`) { console.log(`You win! Paper beats Rock.`); }
-            else if (computerChoice == `paper`) { console.log(`It's a tie!`); }
-            else console.log(`You lose! Scissors beat Paper.`);
-            break;
-        case `scissors`:
-            if (computerChoice == `rock`) { console.log(`You lose! Rock beats Scissors.`); }
-            else if (computerChoice == `paper`) { console.log(`You win! Scissors beat Paper`); }
-            else console.log(`It's a tie!`);
-            break;
-        default:
-            console.log(`Try typing rock, paper, or scissors`);
-            break;
+    function playRound(humanChoice, computerChoice){
+        // console.log(`Inside playRound`);
+    
+        switch(humanChoice) {
+            case `rock`:
+                if (computerChoice == `rock`) { 
+                    console.log(`Ìt's a tie!`); }
+                else if (computerChoice == `paper`) { 
+                    console.log(`You lose! Paper beats Rock.`); 
+                    computerScore++; 
+                }
+                else { 
+                    console.log(`You win! Rock beats Scissors.`); 
+                    humanScore++;
+                }
+                break;
+            case `paper`:
+                if (computerChoice == `rock`) { 
+                    console.log(`You win! Paper beats Rock.`); 
+                    humanScore++;
+                }
+                else if (computerChoice == `paper`) { console.log(`It's a tie!`); }
+                else { console.log(`You lose! Scissors beat Paper.`); computerScore++; }
+                break;
+            case `scissors`:
+                if (computerChoice == `rock`) { console.log(`You lose! Rock beats Scissors.`); computerScore++;}
+                else if (computerChoice == `paper`) { console.log(`You win! Scissors beat Paper`); humanScore++;}
+                else console.log(`It's a tie!`);
+                break;
+            default:
+                console.log(`Try typing rock, paper, or scissors`);
+                break;
+        }
     }
 }
+
+
 
 function getHumanChoice() {
     // console.log(`Inside getHumanChoice`);
